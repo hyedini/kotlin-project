@@ -5,6 +5,18 @@
     <title>Title</title>
 </head>
 <body>
+    <div th:text="${count}"></div>
 
+    <ul th:each="member:${memberList}">
+        <li th:text="${member.id}"></li>
+        <li th:text="${member.name}"></li>
+        <li th:text="${member.age}"></li>
+    </ul>
+
+    <div>
+        <span th:text="${getMemberParam.id}"></span>
+        <span th:text="${getMemberParam.name}"></span>
+        <span th:text="${getMemberParam.age}"></span>
+    </div>
 </body>
 </html>
