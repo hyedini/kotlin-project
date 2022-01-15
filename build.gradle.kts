@@ -29,8 +29,13 @@ configurations.all {
 
 
 dependencies {
-    // spring-boot
+    // kotlin
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    // redis
+    implementation("org.springframework.session:spring-session-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-data-redis:2.6.2")
+    // spring-boot
     implementation("org.springframework.boot:spring-boot-starter:2.6.2")
     implementation("org.springframework.boot:spring-boot-starter-web:2.6.2")
     implementation("org.springframework.boot:spring-boot-starter-webflux:2.6.2")
@@ -40,10 +45,7 @@ dependencies {
     // thymeleaf
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf:2.6.2")
     implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
-    implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE")
-    // kotlin
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+//    implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE")
     // db
     runtimeOnly("mysql:mysql-connector-java")
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
