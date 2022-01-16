@@ -3,7 +3,6 @@ package kt.project.main
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
-import java.sql.DriverManager
 
 @Controller
 class MainController(val mainService:MainService) {
@@ -23,7 +22,9 @@ class MainController(val mainService:MainService) {
         model.addAttribute("getMemberParam",getMemberParam)
 
         // update
-        var message = updateMember()
+        var message = ""
+//        message = updateMember()
+        message = selectKeyInsertMember()
         model.addAttribute("message",message)
 
         return "index"
@@ -35,15 +36,28 @@ class MainController(val mainService:MainService) {
         memberDto.name="하늘보리"
         memberDto.age=23
 
-        var message = ""
-        try {
+        var message = try {
             val result = mainService.updateMember(memberDto)
-            message = when(result){
+            when(result){
                 1 -> "update success"
                 else -> "update failed"
             }
         } catch (e:Exception){
-            message = "server error"
+            "server error"
+        }
+        return message
+    }
+
+    fun selectKeyInsertMember() : String{
+        val memberDto = MemberDto()
+        memberDto.name="insert!"
+        memberDto.age=24
+
+        var message = try {
+            val result = mainService.selectKeyInsertMember(memberDto)
+            if(result>0){ "insert success" }else{ "insert failed" }
+        } catch (e:Exception){
+            "server error"
         }
         return message
     }

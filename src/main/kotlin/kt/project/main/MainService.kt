@@ -13,4 +13,6 @@ class MainService(@Autowired val mainMapper:MainMapper) {
     // update
     @Transactional
     fun updateMember(memberDto:MemberDto) = mainMapper.updateMember(memberDto)
+    @Transactional
+    fun selectKeyInsertMember(memberDto:MemberDto) = mainMapper.selectKeyMember(memberDto)
 }

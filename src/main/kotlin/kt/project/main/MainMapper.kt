@@ -1,9 +1,6 @@
 package kt.project.main
 
-import org.apache.ibatis.annotations.Mapper
-import org.apache.ibatis.annotations.Param
-import org.apache.ibatis.annotations.Select
-import org.apache.ibatis.annotations.Update
+import org.apache.ibatis.annotations.*
 
 @Mapper
 interface MainMapper {
@@ -34,4 +31,9 @@ interface MainMapper {
     """)
     fun updateMember(member:MemberDto):Int
 
+    @Insert("""
+        insert into member (id,name,age) values (#{id},#{name},#{age}) 
+    """)
+    @SelectKey(statement = ["SELECT MAX(id)+1 FROM member"], keyProperty = "id", before = true, resultType = Int::class)
+    fun selectKeyMember(member:MemberDto):Int
 }
