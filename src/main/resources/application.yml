@@ -8,6 +8,10 @@ server:
       enabled: true
       force: true
 
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
 spring:
   rooturl: '/'
 
