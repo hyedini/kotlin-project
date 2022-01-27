@@ -1,5 +1,6 @@
 package kt.project.main
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
@@ -20,6 +21,14 @@ class MainController(val mainService:MainService) {
         memberDto.limit=1
         var getMemberParam = mainService.getMemberParam(memberDto)
         model.addAttribute("getMemberParam",getMemberParam)
+
+//        DTO value 값으로 key 찾기
+        val objectMapper = ObjectMapper()
+        val mapdto = objectMapper.convertValue(memberDto,Map::class.java)
+        var key = mapdto.filterValues {
+            it.toString().contentEquals("hyedini")
+        }.keys.firstOrNull()
+        print(key)
 
         // update
         var message = ""
